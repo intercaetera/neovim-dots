@@ -59,7 +59,6 @@ set softtabstop=2
 
 " files, buffers, windows
 set autoread
-set confirm
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
@@ -106,6 +105,12 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <Leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <Leader>fK <cmd>Telescope help_tags<cr>
 
+" ultisnips
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger = "<C-e>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 " supertab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
@@ -127,9 +132,12 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-rename)
 nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
-vmap <leader>gp  <Plug>(coc-format-selected)
-nmap <leader>gp  <Plug>(coc-format-selected)
+vmap <leader>gp <Plug>(coc-format-selected)
+nmap <leader>gp <Plug>(coc-format-selected)
+nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>qF :call CocAction('format')<CR>
 
+inoremap <silent><expr> <c-space> coc#refresh()
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()

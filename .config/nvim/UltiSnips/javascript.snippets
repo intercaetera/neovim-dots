@@ -1,0 +1,33 @@
+snippet ireact
+import React from 'react';
+endsnippet
+
+snippet pts
+`!p snip.rv = snip.basename`.propTypes = {
+	$0
+}
+endsnippet
+
+snippet describe
+describe('$1', () => {
+	$2
+})
+endsnippet
+
+snippet edf
+export default function $1($2) {
+	return (
+		$3
+	)
+}
+endsnippet
+
+snippet chakraicon
+import { Icon } from '@chakra-ui/react'
+
+export const $1Icon = (props) => (
+	<Icon viewBox="0 0 $2" {...props}>
+		$3
+	</Icon>
+)
+endsnippet

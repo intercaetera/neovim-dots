@@ -1,6 +1,4 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact"],
-	"coc.preferences.willSaveHandlerTimeout": 5000,
 	"diagnostic.enable": true,
 	"diagnostic-languageserver.filetypes": {
 		"javascript": "xo",
