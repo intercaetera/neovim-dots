@@ -1,12 +1,14 @@
 {
+	"elixir.pathToElixirLS": "~/git/elixirls/language_server.sh",
+	"eslint.autoFixOnSave": true,
 	"diagnostic.enable": true,
-	"diagnostic-languageserver.filetypes": {
-		"javascript": "xo",
-		"javascriptreact": "xo"
-	},
-	"diagnostic-languageserver.debug": true,
-	"diagnostic-languageserver.formatFiletypes": {
-		"javascript": "xo",
-		"javascriptreact": "xo"
-	}
+  "suggest.noselect": true,
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+			"enable": true
+    }
+  }
 }

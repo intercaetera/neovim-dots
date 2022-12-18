@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
 
 	-- LSP and Snippets
 	use { 'neoclide/coc.nvim', branch = release }
-	use 'ervandew/supertab'
 	use 'SirVer/ultisnips'
 
 	-- Miscellaneous
@@ -28,6 +27,7 @@ return require('packer').startup(function(use)
 	use 'sheerun/vim-polyglot'
 	use 'MaxMEllon/vim-jsx-pretty'
 	use 'peitalin/vim-jsx-typescript'
+	use 'elixir-editors/vim-elixir'
 
 	-- Neovim plugins
 	use 'danilamihailov/beacon.nvim'
