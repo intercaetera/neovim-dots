@@ -7,7 +7,6 @@ local servers = {
 	'jsonls',
 	'cssls',
 	'html',
-	'elixirls',
 	'eslint',
 	'astro',
 	'hls', -- Haskell
@@ -20,6 +19,16 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show documentation' })
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded"
 })
+
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics,
+	{
+		virtual_text = false,
+		signs = true,
+		update_in_insert = false,
+		underline = true,
+	}
+)
 
 local lspconfig = require('lspconfig')
 local on_attach = function (_, bufnr)
@@ -54,6 +63,12 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+lspconfig.elixirls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "/home/justinian/git/elixir-ls/release/language_server.sh" },
+})
+
 require('lazydev').setup({})
 
 local cmp = require('cmp')
@@ -73,8 +88,6 @@ cmp.setup({
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -82,8 +95,6 @@ cmp.setup({
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
