@@ -31,7 +31,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 )
 
 local lspconfig = require('lspconfig')
-local on_attach = function (_, bufnr)
+local on_attach = function (client, bufnr)
+	client.server_capabilities.document_formatting = true
+
 	local attach_opts = { silent = true, buffer = bufnr }
 
 	vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration,
@@ -103,5 +105,16 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
+		{ name = 'path' },
+		{ name = 'buffer' },
+	}, {
+		{ name = 'cmdline' },
 	}),
+})
+
+-- Eslint format on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  command = 'silent! EslintFixAll',
+  group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
 })
