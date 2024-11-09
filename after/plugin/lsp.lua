@@ -1,6 +1,3 @@
-require('mason').setup({})
-require('mason-lspconfig').setup({})
-
 local servers = {
 	'lua_ls',
 	'ts_ls',
@@ -11,6 +8,11 @@ local servers = {
 	'astro',
 	'hls', -- Haskell
 }
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+	ensure_installed = servers
+})
 
 vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
