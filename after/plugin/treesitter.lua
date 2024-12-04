@@ -1,5 +1,9 @@
 require('nvim-treesitter.configs').setup({
-	ensure_installed = { "javascript", "typescript", "elixir", "c", "lua", "vim", "vimdoc", "query", "heex", "eex", "html", "surface", "astro" },
+	ensure_installed = {
+		"javascript", "typescript", "elixir", "c", "lua", "vim",
+		"vimdoc", "query", "heex", "eex", "html", "surface",
+		"astro", "clojure"
+	},
 
 	ignore_install = {},
 

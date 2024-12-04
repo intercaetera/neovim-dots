@@ -41,6 +41,7 @@ require "paq" {
 	'tpope/vim-endwise',
 	'tpope/vim-commentary',
 	'jiangmiao/auto-pairs',
+	'guns/vim-sexp',
 
 	-- Languages
 	'sheerun/vim-polyglot',
@@ -48,6 +49,8 @@ require "paq" {
 	'peitalin/vim-jsx-typescript',
 	'elixir-editors/vim-elixir',
 	'edwinb/idris2-vim',
+	{ 'luckasRanarison/tailwind-tools.nvim', build = ":UpdateRemotePlugins" },
+	'Olical/conjure',
 
 	-- Git
 	'nvim-lualine/lualine.nvim',

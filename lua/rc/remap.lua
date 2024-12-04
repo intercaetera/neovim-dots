@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 vim.keymap.set("n", "<S-Left>", "10h")
 vim.keymap.set("n", "<S-Down>", "10j")

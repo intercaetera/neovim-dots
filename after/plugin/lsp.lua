@@ -7,6 +7,7 @@ local servers = {
 	'eslint',
 	'astro',
 	'hls', -- Haskell
+	'clojure_lsp',
 }
 
 require('mason').setup({})
@@ -74,6 +75,7 @@ lspconfig.elixirls.setup({
 })
 
 require('lazydev').setup({})
+require('tailwind-tools').setup({})
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -88,7 +90,10 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		['<C-space>'] = cmp.mapping.complete({}),
-		['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		['<CR>'] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = false
+		}),
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -109,8 +114,6 @@ cmp.setup({
 		{ name = 'luasnip' },
 		{ name = 'path' },
 		{ name = 'buffer' },
-	}, {
-		{ name = 'cmdline' },
 	}),
 })
 
