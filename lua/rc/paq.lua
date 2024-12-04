@@ -43,6 +43,7 @@ require "paq" {
 	'tpope/vim-surround',
 	'tpope/vim-endwise',
 	'tpope/vim-commentary',
+	'AndrewRadev/tagalong.vim',
 	'jiangmiao/auto-pairs',
 	'guns/vim-sexp',
 
