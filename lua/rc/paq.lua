@@ -2,9 +2,11 @@ require "paq" {
 	"savq/paq-nvim",
 
 	-- Libraries
+	'stevearc/dressing.nvim',
 	'nvim-lua/plenary.nvim',
 	'nvim-tree/nvim-web-devicons',
 	'editorconfig/editorconfig-vim',
+	'MunifTanjim/nui.nvim',
 
 	-- Colors
 	{ "catppuccin/nvim", as = "catppuccin" },
@@ -34,6 +36,7 @@ require "paq" {
 	-- Major modes
 	'junegunn/goyo.vim',
 	'stevearc/oil.nvim',
+	{ 'yetone/avante.nvim', branch = 'main', build = 'make' },
 
 	-- Text editing essentials
 	'alvan/vim-closetag',
@@ -51,6 +54,7 @@ require "paq" {
 	'edwinb/idris2-vim',
 	{ 'luckasRanarison/tailwind-tools.nvim', build = ":UpdateRemotePlugins" },
 	'Olical/conjure',
+	'MeanderingProgrammer/render-markdown.nvim',
 
 	-- Git
 	'nvim-lualine/lualine.nvim',
