@@ -1,7 +1,8 @@
 vim.opt.hidden = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "yes:1"
+vim.opt.numberwidth = 3
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -19,7 +20,7 @@ vim.opt.writebackup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.updatetime = 300
+vim.opt.updatetime = 800
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

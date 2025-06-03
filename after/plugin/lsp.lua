@@ -8,6 +8,7 @@ local servers = {
 	'astro',
 	'hls', -- Haskell
 	'clojure_lsp',
+	'terraformls'
 }
 
 require('mason').setup({})
@@ -18,6 +19,10 @@ require('mason-lspconfig').setup({
 vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show documentation' })
+
+vim.lsp.buf_attach_client_options = {
+	debounce_text_changes = 150
+}
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded"

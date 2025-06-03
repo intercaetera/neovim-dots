@@ -36,7 +36,6 @@ require "paq" {
 	-- Major modes
 	'junegunn/goyo.vim',
 	'stevearc/oil.nvim',
-	{ 'yetone/avante.nvim', branch = 'main', build = 'make' },
 
 	-- Text editing essentials
 	'alvan/vim-closetag',
@@ -55,7 +54,7 @@ require "paq" {
 	'edwinb/idris2-vim',
 	{ 'luckasRanarison/tailwind-tools.nvim', build = ":UpdateRemotePlugins" },
 	'Olical/conjure',
-	'MeanderingProgrammer/render-markdown.nvim',
+	'gpanders/nvim-parinfer',
 
 	-- Git
 	'nvim-lualine/lualine.nvim',
