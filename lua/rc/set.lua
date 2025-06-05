@@ -3,6 +3,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.numberwidth = 3
+vim.opt.conceallevel = 1
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

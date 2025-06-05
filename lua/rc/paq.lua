@@ -36,6 +36,7 @@ require "paq" {
 	-- Major modes
 	'junegunn/goyo.vim',
 	'stevearc/oil.nvim',
+	'epwalsh/obsidian.nvim',
 
 	-- Text editing essentials
 	'alvan/vim-closetag',
