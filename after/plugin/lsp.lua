@@ -16,68 +16,63 @@ require('mason-lspconfig').setup({
 	ensure_installed = servers
 })
 
-vim.keymap.set('n', '<leader>[', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', '<leader>]', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show documentation' })
+vim.keymap.set('n', '<leader>[', function () vim.diagnostic.jump { count = -1, float = true } end, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', '<leader>]', function () vim.diagnostic.jump { count = 1, float = true } end, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', 'K', function () vim.lsp.buf.hover { border = "rounded" } end, { desc = 'Show documentation' })
 
 vim.lsp.buf_attach_client_options = {
 	debounce_text_changes = 150
 }
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded"
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
 })
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics,
-	{
-		virtual_text = false,
-		signs = true,
-		update_in_insert = false,
-		underline = true,
-	}
-)
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function (event)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-local lspconfig = require('lspconfig')
-local on_attach = function (client, bufnr)
-	client.server_capabilities.document_formatting = true
+		if client ~= nil then
+			client.server_capabilities.document_formatting = true
+		end
 
-	local attach_opts = { silent = true, buffer = bufnr }
+		local attach_opts = { silent = true, buffer = event.buf }
 
-	vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration,
-		vim.tbl_extend('force', attach_opts, { desc = "Go to declaration" }))
+		vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration,
+			vim.tbl_extend('force', attach_opts, { desc = "Go to declaration" }))
 
-	vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition,
-		vim.tbl_extend('force', attach_opts, { desc = "Go to definition" }))
+		vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition,
+			vim.tbl_extend('force', attach_opts, { desc = "Go to definition" }))
 
-	vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation,
-		vim.tbl_extend('force', attach_opts, { desc = "Go to implementation" }))
+		vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation,
+			vim.tbl_extend('force', attach_opts, { desc = "Go to implementation" }))
 
-	vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename,
-		vim.tbl_extend('force', attach_opts, { desc = "Rename" }))
+		vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename,
+			vim.tbl_extend('force', attach_opts, { desc = "Rename" }))
 
-	vim.keymap.set({ 'n', 'x' }, '<leader>gf', function() vim.lsp.buf.format({ async = true }) end,
-		vim.tbl_extend('force', attach_opts, { desc = "Format" }))
+		vim.keymap.set({ 'n', 'x' }, '<leader>gf', function() vim.lsp.buf.format({ async = true }) end,
+			vim.tbl_extend('force', attach_opts, { desc = "Format" }))
 
-	vim.keymap.set({ 'n', 'i' }, '<C-s>', vim.lsp.buf.signature_help,
-		vim.tbl_extend('force', attach_opts, { desc = "Signature help" }))
-end
+		vim.keymap.set({ 'n', 'i' }, '<C-s>', vim.lsp.buf.signature_help,
+			vim.tbl_extend('force', attach_opts, { desc = "Signature help" }))
+	end
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+vim.lsp.config("*", {
+	capabilities = capabilities
+})
 
-lspconfig.elixirls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+vim.lsp.config("elixirls", {
 	cmd = { "/home/justinian/git/elixir-ls/release/language_server.sh" },
 })
+
+vim.lsp.enable(servers)
 
 require('lazydev').setup({})
 require('tailwind-tools').setup({})
